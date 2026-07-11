@@ -1,105 +1,95 @@
-import json
 import os
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CADETS_DIR = os.path.join(BASE_DIR, "cadets")
+import time
 
 
-def load_cadets():
-    cadets = []
-
-    for filename in sorted(os.listdir(CADETS_DIR)):
-        if not filename.endswith(".json"):
-            continue
-
-        path = os.path.join(CADETS_DIR, filename)
-
-        with open(path, "r") as cadet_file:
-            cadets.append(json.load(cadet_file))
-
-    return cadets
+def clear_screen():
+    os.system("clear")
 
 
-def show_status():
-    print()
-    print("SYSTEM STATUS")
-    print("[OK] Mission Academy Online")
-    print("[OK] Cadet Database Online")
-    print("[OK] Robotics Systems Online")
-    print("[OK] Mission Database Online")
-    print("[OK] JARVIS Core Online")
+def pause(seconds=1):
+    time.sleep(seconds)
+
+
+def boot_sequence():
+    clear_screen()
+
+    print("=" * 48)
+    print("        MISSION ACADEMY COMMAND")
+    print("              JARVIS")
+    print("=" * 48)
     print()
 
-
-def show_cadets(cadets):
+    print("Initializing Mission Academy...")
+    pause()
+    print("[OK] Cadet database online")
+    pause()
+    print("[OK] Fabrication lab online")
+    pause()
+    print("[OK] Mission control online")
+    pause()
     print()
-    print("{} cadets registered:".format(len(cadets)))
-
-    for cadet in cadets:
-        name = cadet.get("name", "Unknown Cadet")
-        call_sign = cadet.get("call_sign", "Unassigned")
-        print("- {} ({})".format(name, call_sign))
-
+    print("JARVIS: Welcome, Cadets Teddy and Karla.")
+    print()
+    print("Type START to receive today's mission.")
     print()
 
 
-def show_help():
+def mission_briefing():
+    clear_screen()
+
+    print("=" * 48)
+    print("             MISSION BRIEFING")
+    print("=" * 48)
     print()
-    print("AVAILABLE COMMANDS")
-    print("help    - Show available commands")
-    print("status  - Show Mission Academy system status")
-    print("cadets  - Show registered cadets")
-    print("clear   - Clear the screen")
-    print("exit    - Shut down JARVIS command interface")
+    print("MISSION 001: FIRST FABRICATION")
     print()
+    print("Cadets Teddy and Karla,")
+    print()
+    print("Your objective is to manufacture your first")
+    print("Mission Academy artifact using the 3D printer.")
+    print()
+    print("MISSION OBJECTIVES")
+    print()
+    print("1. Choose one object that you think is awesome.")
+    print("2. Prepare the object for printing.")
+    print("3. Send it to the fabrication lab.")
+    print("4. Inspect the completed print.")
+    print()
+    print("RECOMMENDED BUILDS")
+    print()
+    print("- Articulated dragon")
+    print("- Flexi dinosaur")
+    print("- Minecraft figure")
+    print("- GOOSE or PHOENIX nameplate")
+    print()
+    print("REWARD")
+    print()
+    print("Qualification 001: Fabrication Recruit")
+    print()
+    print("JARVIS: Report to Commander Dad to begin.")
+    print()
+    input("Press ENTER when the briefing is complete...")
 
 
-def command_loop(cadets):
+def main():
+    boot_sequence()
+
     while True:
         command = input("JARVIS> ").strip().lower()
 
-        if command == "help":
-            show_help()
-        elif command == "status":
-            show_status()
-        elif command == "cadets":
-            show_cadets(cadets)
-        elif command == "clear":
-            os.system("clear")
+        if command == "start":
+            mission_briefing()
+            boot_sequence()
+        elif command == "briefing":
+            mission_briefing()
+            boot_sequence()
         elif command == "exit":
-            print()
             print("JARVIS: Command interface shutting down.")
             break
         elif command == "":
             continue
         else:
-            print("JARVIS: Command not recognized. Type 'help'.")
-
-
-def main():
-    print("=" * 40)
-    print("JARVIS Mission Command v0.3")
-    print("=" * 40)
-    print()
-
-    print("Initializing Mission Academy...")
-    print("Loading Cadet Database...")
-    print("Loading Robotics Systems...")
-    print("Loading Mission Database...")
-    print("Loading JARVIS Core...")
-    print()
-
-    cadets = load_cadets()
-
-    show_status()
-
-    print("Welcome Commander Miller.")
-    show_cadets(cadets)
-
-    print("Type 'help' to view available commands.")
-    print()
-
-    command_loop(cadets)
+            print("JARVIS: Type START to begin or EXIT to close.")
 
 
 if __name__ == "__main__":

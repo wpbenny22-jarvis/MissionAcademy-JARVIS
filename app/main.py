@@ -28,10 +28,18 @@ def main():
 
     print("Initializing Mission Academy...")
     print("Loading Cadet Database...")
+    print("Loading Robotics Systems...")
+    print("Loading Mission Database...")
+    print("Loading JARVIS Core...")
 
     cadets = load_cadets()
 
+    print()
     print("[OK] Mission Academy Online")
+    print("[OK] Cadet Database Online")
+    print("[OK] Robotics Systems Online")
+    print("[OK] Mission Database Online")
+    print("[OK] JARVIS Core Online")
     print()
     print("Welcome Commander Miller.")
     print()

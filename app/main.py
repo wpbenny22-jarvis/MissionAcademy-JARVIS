@@ -66,9 +66,10 @@ def mission_briefing():
     print()
     print("Qualification 001: Fabrication Recruit")
     print()
-    print("JARVIS: Report to Commander Dad to begin.")
+    print("JARVIS: Report to Commander Dad after your")
+    print("first successful print.")
     print()
-    input("Press ENTER when the briefing is complete...")
+    input("Press ENTER to return to Mission Control...")
 
 
 def main():
